@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'app_folder.apps.AppFolderConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -76,8 +77,8 @@ WSGI_APPLICATION = 'project_folder.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'vishnu',
-        'USER':'vishnu_vardhan',
+        'NAME': 'vishnu_vardhan',
+        'USER':'vishnu',
         'PASSWORD':'vishnupooja',
         'HOST':'localhost'
     }
