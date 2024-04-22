@@ -50,8 +50,9 @@
 
           <div class="form-box register">
             <h2 class="animation" style="--i:17; --j:0;">Sign Up</h2>
-            <form action="/insert_data" method="POST">
+            <form action="/insert_data/" method="POST">
                 {% csrf_token %}
+                
               
                 <div class="input-box animation" style="--i:18; --j:1;">
                     <input type="text" id="user_name" name="user_name" required>
@@ -69,11 +70,12 @@
                     <i class='bx bxs-lock-alt' ></i>
                 </div>
                 <button type="submit" class="btn animation" style="--i:21; --j:4">Sing Up</button>
+                </form>
                 <div class="logerg-link animation" style="--i:22; --j:5">
                     <p>Already have an account ? <a href="#" class="login-link">Login</a></p>
                     
                 </div>
-            </form>
+          
 
 
           </div>
