@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.template import loader
+
 from app_folder.models import dajngo_project
 from django.views.decorators.csrf import csrf_protect
 @csrf_protect
@@ -23,4 +24,16 @@ def insert_data(request):
     password_for_user1=request.POST['Password_use']
     c1=dajngo_project.objects.create(name_for_user=name_for_user1,email_for_user=email_for_user1,password_for_user=password_for_user1)
     c1.save()
-    return HttpResponse('its done')
+    return redirect('/vardhan')
+
+def login_data(request):
+    name_for_user1=request.POST['user_name']
+    password_for_user1=request.POST['Password_use']
+    
+    # c1=dajngo_project.objects.create(name_for_user=name_for_user1,email_for_user=email_for_user1,password_for_user=password_for_user1)
+    # c1.save()
+    return HttpResponse(name_for_user1+password_for_user1)
+
+def homepage(request):
+    template = loader.get_template('home_page.html')
+    return HttpResponse(template.render())

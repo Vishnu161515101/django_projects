@@ -21,19 +21,20 @@
         
           <div class="form-box login">
             <h2 class="animation" style="--i:1; --j:21">Login</h2>
-         
+            <form action="{% url 'login_data' %}" method="POST">
+                {% csrf_token %}
               
                 <div class="input-box animation" style="--i:1; --j:22">
-                    <input type="text" required>
+                    <input type="text" id="user_name" name="user_name" required>
                     <label>UserName</label>
                     <i class='bx bxs-user'></i>
                 </div>
                 <div class="input-box animation" style="--i:2; --j:23">
-                    <input type="password" required>
+                    <input type="password" id="Password_use" name="Password_use" required>
                     <label>Password</label>
                     <i class='bx bxs-lock-alt' ></i>
                 </div>
-                <!-- <button type="submit" class="btn animation" style="--i:3; --j:24">Login</button> -->
+                <button type="submit" class="btn animation" style="--i:3; --j:24">Login</button>
                 <div class="logerg-link animation" style="--i:4; --j:25">
                     <p>Don't have an account ? <a href="#" class="register-link">Sing In</a></p>
                     
