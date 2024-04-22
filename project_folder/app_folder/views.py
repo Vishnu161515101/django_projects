@@ -36,7 +36,8 @@ def login_data(request):
     if user:
         return redirect('/homepage')
     else:
-        return redirect('/vardhan')
+       message = 'Please enter correct email / password !'
+       return redirect('/vardhan?message={}'.format(message))
 
     # c1=dajngo_project.objects.create(name_for_user=name_for_user1,email_for_user=email_for_user1,password_for_user=password_for_user1)
     # c1.save()
