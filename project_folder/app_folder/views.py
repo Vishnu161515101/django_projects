@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 
 from app_folder.models import dajngo_project
+from .models import dajngo_project 
 from django.views.decorators.csrf import csrf_protect
 @csrf_protect
 
@@ -27,12 +28,19 @@ def insert_data(request):
     return redirect('/vardhan')
 
 def login_data(request):
-    name_for_user1=request.POST['user_name']
-    password_for_user1=request.POST['Password_use']
+    name_for_user1 = request.POST.get('user_name')
+    password_for_user1 = request.POST.get('Password_use')
+
+    user = dajngo_project.objects.filter(name_for_user=name_for_user1, password_for_user=password_for_user1).first()
     
+    if user:
+        return redirect('/homepage')
+    else:
+        return redirect('/vardhan')
+
     # c1=dajngo_project.objects.create(name_for_user=name_for_user1,email_for_user=email_for_user1,password_for_user=password_for_user1)
     # c1.save()
-    return HttpResponse(name_for_user1+password_for_user1)
+    
 
 def homepage(request):
     template = loader.get_template('home_page.html')
