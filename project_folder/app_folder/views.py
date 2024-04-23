@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect #to redirect to the constructed URL
 from django.template import loader
-
+# from django.urls import reverse #to get the URL pattern name
 from app_folder.models import dajngo_project
 from .models import dajngo_project 
 from django.views.decorators.csrf import csrf_protect
@@ -36,8 +37,10 @@ def login_data(request):
     if user:
         return redirect('/homepage')
     else:
-       message = 'Please enter correct email / password !'
+       message = 'Please enter correct email / password!'
        return redirect('/vardhan?message={}'.format(message))
+    #    message = 'Please enter correct email / password !'
+    #    return redirect('/vardhan?message={}'.format(message))
 
     # c1=dajngo_project.objects.create(name_for_user=name_for_user1,email_for_user=email_for_user1,password_for_user=password_for_user1)
     # c1.save()
@@ -46,3 +49,12 @@ def login_data(request):
 def homepage(request):
     template = loader.get_template('home_page.html')
     return HttpResponse(template.render())
+
+
+
+
+def your_view(request):
+    message = 'Please enter correct email / password!'
+    context = {'message': message}
+    template = loader.get_template('test_html.html')
+    return HttpResponse(template.render(context, request))

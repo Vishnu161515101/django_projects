@@ -20,11 +20,11 @@
         <form action="{% url 'login_data' %}" method="POST">
             {% csrf_token %}
 
-            <div class="input-box animation" style="--i:1; --j:22">
-                {% if message == 'Please enter correct email / password !' %}
-                    <label>{{ message }}</label>
-                {% endif %}
+            {% if message %}
+            <div>
+                   <h4>{{ message }}</h4>
             </div>
+            {% endif %}
             <div class="input-box animation" style="--i:1; --j:22">
                 <input type="text" id="user_name" name="user_name" required>
                 <label>UserName</label>
