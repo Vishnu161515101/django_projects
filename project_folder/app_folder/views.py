@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from django.http import HttpResponseRedirect #to redirect to the constructed URL
+# from django.http import HttpResponseRedirect #to redirect to the constructed URL
 from django.template import loader
 # from django.urls import reverse #to get the URL pattern name
 from app_folder.models import dajngo_project
@@ -92,3 +92,33 @@ def your_view(request):
     context = {'message': message}
     template = loader.get_template('test_html.html')
     return HttpResponse(template.render(context, request))
+
+
+def your_post_view(request):
+    if request.method == 'POST':
+        # Process the POST data
+        message = '12'
+
+        # Store the message in the session
+        request.session['message'] = message
+
+        # Redirect to another view
+        return redirect('your_destination_view')
+    else:
+        # Handle other HTTP methods
+        pass
+
+
+def your_destination_view(request):
+    # Retrieve the message from the session
+    message = request.session.get('message', None)
+
+    if message:
+        # Clear the message from the session after retrieving it
+        del request.session['message']
+
+        # Process the message or do something with it
+        return HttpResponse(message)
+    else:
+        # Handle the case where message is not found
+        return HttpResponse("Message not found")
