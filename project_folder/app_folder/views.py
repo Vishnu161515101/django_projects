@@ -20,11 +20,18 @@ def vardhan(request):
     message = request.GET.get('message')
     
     # Now you can use the 'message' variable in your view logic
-    if message:
+    if message == '12':
         message = 'Please enter correct email / password!'
         context = {'message': message}
         template = loader.get_template('entry_page.html')
         return HttpResponse(template.render(context, request))
+    elif message == '13':
+        message = 'Alredy this mail existed'
+        context = {'message': message}
+        template = loader.get_template('entry_page.html')
+        return HttpResponse(template.render(context, request))
+
+
     else:
          template = loader.get_template('entry_page.html')
          return HttpResponse(template.render())
@@ -49,9 +56,14 @@ def insert_data(request):
         name_for_user1=request.POST['user_name']
         email_for_user1=request.POST['Emails']
         password_for_user1=request.POST['Password_use']
-        c1=dajngo_project.objects.create(name_for_user=name_for_user1,email_for_user=email_for_user1,password_for_user=password_for_user1)
-        c1.save()
-        return redirect('/vardhan')
+        user = dajngo_project.objects.filter(name_for_user=name_for_user1,email_for_user=email_for_user1).first()
+        if user:
+             message = '13'
+             return redirect('/vardhan/?message={}'.format(message)) 
+        else:
+            c1=dajngo_project.objects.create(name_for_user=name_for_user1,email_for_user=email_for_user1,password_for_user=password_for_user1)
+            c1.save()
+            return redirect('/vardhan')
 
 def login_data(request):
     name_for_user1 = request.POST.get('user_name')

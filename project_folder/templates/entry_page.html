@@ -67,9 +67,14 @@
                 <label>Password</label>
                 <i class='bx bxs-lock-alt'></i>
             </div>
-            <button type="submit" class="btn animation" style="--i:21; --j:4">Sign Up</button>
+            {% if message %}
+            <div class="input-box animation" style="--i:21; --j:4">
+                   <h6 style="color: white;">{{ message }}</h6>
+            </div>
+            {% endif %}
+            <button type="submit" class="btn animation" style="--i:22; --j:5">Sign Up</button>
         </form>
-        <div class="logerg-link animation" style="--i:22; --j:5">
+        <div class="logerg-link animation" style="--i:23; --j:6">
             <p>Already have an account? <a href="#" class="login-link">Login</a></p>
         </div>
     </div>
