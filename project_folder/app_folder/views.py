@@ -18,20 +18,21 @@ def vishnu(request):
 def vardhan(request):
     # Fetch the value of the 'message' query parameter
     message = request.session.get('message', None)
-    
+    # return HttpResponse(message)
     # Now you can use the 'message' variable in your view logic
     if message == '12':
+        del request.session['message']
         message = 'Please enter correct email / password!'
         context = {'message': message}
         template = loader.get_template('entry_page.html')
         return HttpResponse(template.render(context, request))
     elif message == '13':
+        del request.session['message']
         message = 'Alredy this mail existed'
         context = {'message': message}
         template = loader.get_template('entry_page.html')
         return HttpResponse(template.render(context, request))
-
-
+    
     else:
          template = loader.get_template('entry_page.html')
          return HttpResponse(template.render())
@@ -60,7 +61,7 @@ def insert_data(request):
         password_for_user1=request.POST['Password_use']
         user = dajngo_project.objects.filter(name_for_user=name_for_user1,email_for_user=email_for_user1).first()
         if user:
-             message = '12'
+             message = '13'
              request.session['message'] = message
              return redirect('/vardhan') 
         else:
