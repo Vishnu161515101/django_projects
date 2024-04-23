@@ -17,7 +17,7 @@ def vishnu(request):
 
 def vardhan(request):
     # Fetch the value of the 'message' query parameter
-    message = request.GET.get('message')
+    message = request.session.get('message', None)
     
     # Now you can use the 'message' variable in your view logic
     if message == '12':
@@ -38,7 +38,9 @@ def vardhan(request):
     
 def vardhan1(request):
     # Fetch the value of the 'message' query parameter
-    message = request.GET.get('message')
+    message = request.session.get('message', None)
+
+  
     
     # Now you can use the 'message' variable in your view logic
     if message:
@@ -58,8 +60,9 @@ def insert_data(request):
         password_for_user1=request.POST['Password_use']
         user = dajngo_project.objects.filter(name_for_user=name_for_user1,email_for_user=email_for_user1).first()
         if user:
-             message = '13'
-             return redirect('/vardhan/?message={}'.format(message)) 
+             message = '12'
+             request.session['message'] = message
+             return redirect('/vardhan') 
         else:
             c1=dajngo_project.objects.create(name_for_user=name_for_user1,email_for_user=email_for_user1,password_for_user=password_for_user1)
             c1.save()
@@ -77,7 +80,8 @@ def login_data(request):
         # message = '1'
         # return redirect('vardhan?message={}'.format(message))
        message = '12'
-       return redirect('/vardhan/?message={}'.format(message)) 
+       request.session['message'] = message
+       return redirect('/vardhan')
     
 
 def homepage(request):

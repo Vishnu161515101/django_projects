@@ -6,5 +6,25 @@
     {% if message %}
         <h2 style="background-color: green;color:white">{{ message }}</h2>
     {% endif %}
+
+    <!DOCTYPE html>
+<html>
+<body>
+
+<h1>The form element</h1>
+
+<form action="/your_post_view" method="POST">
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname"><br><br>
+  <label for="lname">Last name:</label>
+  <input type="text" id="lname" name="lname"><br><br>
+  <input type="submit" value="Submit">
+</form>
+
+<p>Click the "Submit" button and the form-data will be sent to a page on the 
+server called "action_page.php".</p>
+
+</body>
+</html>
 </body>
 </html>
