@@ -20,11 +20,7 @@
         <form action="{% url 'login_data' %}" method="POST">
             {% csrf_token %}
 
-            {% if message %}
-            <div>
-                   <h4>{{ message }}</h4>
-            </div>
-            {% endif %}
+           
             <div class="input-box animation" style="--i:1; --j:22">
                 <input type="text" id="user_name" name="user_name" required>
                 <label>UserName</label>
@@ -35,8 +31,13 @@
                 <label>Password</label>
                 <i class='bx bxs-lock-alt'></i>
             </div>
-            <button type="submit" class="btn animation" style="--i:3; --j:24">Login</button>
-            <div class="logerg-link animation" style="--i:4; --j:25">
+            {% if message %}
+            <div class="input-box animation" style="--i:3; --j:24">
+                   <h5 style="color: white;">{{ message }}</h5>
+            </div>
+            {% endif %}
+            <button type="submit" class="btn animation" style="--i:4; --j:25">Login</button>
+            <div class="logerg-link animation" style="--i:5; --j:26">
                 <p>Don't have an account? <a href="#" class="register-link">Sign In</a></p>
             </div>
         </form>

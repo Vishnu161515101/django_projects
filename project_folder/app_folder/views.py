@@ -16,17 +16,42 @@ def vishnu(request):
     return HttpResponse('hello vishnu')
 
 def vardhan(request):
-    template = loader.get_template('entry_page.html')
-    return HttpResponse(template.render())
+    # Fetch the value of the 'message' query parameter
+    message = request.GET.get('message')
+    
+    # Now you can use the 'message' variable in your view logic
+    if message:
+        message = 'Please enter correct email / password!'
+        context = {'message': message}
+        template = loader.get_template('entry_page.html')
+        return HttpResponse(template.render(context, request))
+    else:
+         template = loader.get_template('entry_page.html')
+         return HttpResponse(template.render())
+    
+def vardhan1(request):
+    # Fetch the value of the 'message' query parameter
+    message = request.GET.get('message')
+    
+    # Now you can use the 'message' variable in your view logic
+    if message:
+        message = 'Please enter correct email / password!'
+        context = {'message': message}
+        template = loader.get_template('entry_page.html')
+        return HttpResponse(template.render(context, request))
+    else:
+         template = loader.get_template('entry_page.html')
+         return HttpResponse(template.render())
+    
 
 
 def insert_data(request):
-    name_for_user1=request.POST['user_name']
-    email_for_user1=request.POST['Emails']
-    password_for_user1=request.POST['Password_use']
-    c1=dajngo_project.objects.create(name_for_user=name_for_user1,email_for_user=email_for_user1,password_for_user=password_for_user1)
-    c1.save()
-    return redirect('/vardhan')
+        name_for_user1=request.POST['user_name']
+        email_for_user1=request.POST['Emails']
+        password_for_user1=request.POST['Password_use']
+        c1=dajngo_project.objects.create(name_for_user=name_for_user1,email_for_user=email_for_user1,password_for_user=password_for_user1)
+        c1.save()
+        return redirect('/vardhan')
 
 def login_data(request):
     name_for_user1 = request.POST.get('user_name')
@@ -37,13 +62,10 @@ def login_data(request):
     if user:
         return redirect('/homepage')
     else:
-       message = 'Please enter correct email / password!'
-       return redirect('/vardhan?message={}'.format(message))
-    #    message = 'Please enter correct email / password !'
-    #    return redirect('/vardhan?message={}'.format(message))
-
-    # c1=dajngo_project.objects.create(name_for_user=name_for_user1,email_for_user=email_for_user1,password_for_user=password_for_user1)
-    # c1.save()
+        # message = '1'
+        # return redirect('vardhan?message={}'.format(message))
+       message = '12'
+       return redirect('/vardhan/?message={}'.format(message)) 
     
 
 def homepage(request):
