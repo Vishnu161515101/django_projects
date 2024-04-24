@@ -6,6 +6,10 @@ from django.template import loader
 from app_folder.models import dajngo_project
 from .models import dajngo_project 
 from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+
 @csrf_protect
 
 
@@ -127,3 +131,41 @@ def your_destination_view(request):
     else:
         # Handle the case where message is not found
         return HttpResponse("Message not found")
+    
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Redirect to a success page or login page
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+    return render(request, 'adminpage.html', {'form': form})
+
+def create_user(request):
+    if request.method == 'POST':
+    # Create the user
+     name_for_user1=request.POST['fname']
+     email_for_user1=request.POST['Emails']
+     password_for_user1=request.POST['Password_use']
+    #  return HttpResponse(name_for_user1)
+     user = User.objects.create_user(username=name_for_user1, email=email_for_user1, password=password_for_user1)
+      # Optionally set other attributes like first_name, last_name, etc.
+       
+        # Save the user
+     user.save()
+     return user
+
+     
+
+
+def regid(request):
+    template = loader.get_template('test_html.html')
+    return HttpResponse(template.render())
+
+
+def login(request):
+    template = loader.get_template('test_html.html')
+    return HttpResponse(template.render())

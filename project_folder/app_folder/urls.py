@@ -11,5 +11,7 @@ urlpatterns = [
     path('your_view',views.your_view,name='your_view'),
     path('your_post_view',views.your_post_view,name='your_post_view'),
     path('your_destination_view',views.your_destination_view,name='your_destination_view'),
+    path('create_user',views.create_user,name='create_user'),
+    path('regid',views.regid,name='regid'),
     
 ]

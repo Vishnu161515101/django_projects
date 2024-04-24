@@ -12,3 +12,10 @@ login_link.onclick = () =>
 {
     wrapper.classList.remove('active');
 }
+
+
+$(document).ready(function() { 
+    $.doTimeout(5000, function() { 
+        $('#mydiv').fadeOut(); 
+    }); 
+});
